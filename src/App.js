@@ -3,6 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 import angular from 'angular';
 import ngRoute from 'angular-route';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+import About from './components/AboutComponent';
+import Contact from './components/ContactComponent'
 
 
  angular
@@ -17,11 +24,18 @@ import ngRoute from 'angular-route';
       vm.message = 'success';
   };
 
-  angular.module('ngApp').controller('AboutController', HomeController);
-  function HomeController() {
+  angular.module('ngApp').controller('AboutController', AboutController);
+  function AboutController() {
   var vm = this;
-  vm.message = 'success';
+  vm.message = 'About';
   };
+
+  angular.module('ngApp').controller('ContactController', ContactController);
+  function ContactController() {
+  var vm = this;
+  vm.message = 'Contact';
+  };
+
 
     config.$inject = ['$routeProvider', '$locationProvider'];
 
@@ -67,6 +81,20 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+
+        <Router>
+        <div>
+               <ul>             
+                  <li><Link to="/about">About</Link></li> 
+                  <li><Link to="/contact">Contact us</Link></li>            
+                </ul>
+         <hr/> 
+
+      <Route exact path="/About" component={About}/>  
+      <Route exact path="/contact" component={Contact}/>      
+    </div>
+  </Router>
+
         {/* <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p> */}
